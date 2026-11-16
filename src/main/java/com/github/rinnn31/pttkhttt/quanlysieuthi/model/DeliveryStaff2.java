@@ -9,4 +9,6 @@ public class DeliveryStaff2 extends Staff2 {
         super(id, fullName, password, phoneNumber, email, address, type, salary, role);
     }
     
+    public DeliveryStaff2() {
+    }
 }

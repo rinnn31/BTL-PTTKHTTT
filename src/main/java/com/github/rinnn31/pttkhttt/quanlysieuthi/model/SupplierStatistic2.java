@@ -15,6 +15,9 @@ public class SupplierStatistic2 extends Supplier2 {
         this.totalImportReceipts = totalImportReceipts;
     }
 
+    public SupplierStatistic2() {
+    }
+
     public Integer getTotalImportQuantity() {
         return totalImportQuantity;
     }

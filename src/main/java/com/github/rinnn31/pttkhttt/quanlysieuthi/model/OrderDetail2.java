@@ -15,6 +15,9 @@ public class OrderDetail2 {
         this.item = item;
     }
 
+    public OrderDetail2() {
+    }
+
     public Integer getId() {
         return id;
     }

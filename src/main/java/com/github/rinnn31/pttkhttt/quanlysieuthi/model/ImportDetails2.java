@@ -15,6 +15,9 @@ public class ImportDetails2 {
         this.quantity = quantity;
     }
 
+    public ImportDetails2() {
+    }
+
     public Integer getId() {
         return id;
     }

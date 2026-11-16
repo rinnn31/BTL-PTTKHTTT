@@ -21,6 +21,9 @@ public class Invoice2 {
         this.order = order;
     }
 
+    public Invoice2() {
+    }
+
     public Integer getId() {
         return id;
     }

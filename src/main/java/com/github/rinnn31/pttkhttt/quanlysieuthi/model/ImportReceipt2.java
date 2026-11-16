@@ -21,6 +21,9 @@ public class ImportReceipt2 {
         this.details = details;
     }
 
+    public ImportReceipt2() {
+    }
+
     public Integer getId() {
         return id;
     }

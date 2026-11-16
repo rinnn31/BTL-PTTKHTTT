@@ -22,6 +22,9 @@ public class User2 {
         this.type = type;
     }
 
+    public User2() {
+    }
+
     public Integer getId() {
         return id;
     }

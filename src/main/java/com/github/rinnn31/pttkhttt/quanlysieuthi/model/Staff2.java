@@ -18,6 +18,9 @@ public class Staff2 extends User2 {
         this.role = role;
     }
 
+    public Staff2() {
+    }
+
     public BigDecimal getSalary() {
         return salary;
     }

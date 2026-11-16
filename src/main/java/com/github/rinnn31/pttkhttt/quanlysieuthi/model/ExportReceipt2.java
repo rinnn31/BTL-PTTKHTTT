@@ -18,6 +18,9 @@ public class ExportReceipt2 {
         this.onlineOrder = onlineOrder;
     }
 
+    public ExportReceipt2() {
+    }
+
     public Integer getId() {
         return id;
     }

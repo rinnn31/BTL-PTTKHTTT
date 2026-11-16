@@ -13,6 +13,9 @@ public class InstoreOrder2 extends Order2 {
         this.salesStaff = salesStaff;
     }
 
+    public InstoreOrder2() {
+    }
+
     public SalesStaff2 getSalesStaff() {
         return salesStaff;
     }

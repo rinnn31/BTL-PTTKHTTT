@@ -16,7 +16,6 @@ public class Order2 {
     Integer id;
     Instant createdAt;
     String status;
-    BigDecimal total;
     String type;
     Customer2 customer;
     List<OrderDetail2> details;
@@ -26,10 +25,12 @@ public class Order2 {
         this.id = id;
         this.createdAt = createdAt;
         this.status = status;
-        this.total = total;
         this.type = type;
         this.customer = customer;
         this.details = details;
+    }
+
+    public Order2() {
     }
 
     public Integer getId() {
@@ -54,14 +55,6 @@ public class Order2 {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
     }
 
     public String getType() {

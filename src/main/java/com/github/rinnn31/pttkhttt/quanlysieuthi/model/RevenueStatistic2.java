@@ -15,6 +15,9 @@ public class RevenueStatistic2 {
         this.totalOrders = totalOrders;
     }
 
+    public RevenueStatistic2() {
+    }
+
     public BigDecimal getTotalRevenue() {
         return totalRevenue;
     }

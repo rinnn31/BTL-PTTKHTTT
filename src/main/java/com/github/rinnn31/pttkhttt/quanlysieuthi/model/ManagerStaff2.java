@@ -8,5 +8,8 @@ public class ManagerStaff2 extends Staff2 {
             String type, BigDecimal salary, String role) {
         super(id, fullName, password, phoneNumber, email, address, type, salary, role);
     }
+
+    public ManagerStaff2() {
+    }
     
 }

@@ -7,4 +7,6 @@ public class Customer2 extends User2 {
         super(id, fullName, password, phoneNumber, email, address, type);
     }
     
+    public Customer2() {
+    }
 }

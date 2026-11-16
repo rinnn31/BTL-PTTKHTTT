@@ -30,6 +30,10 @@ public class Item2 {
         this.originalPrice = originalPrice;
     }
 
+    public Item2() {
+        
+    }
+
     public Integer getId() {
         return id;
     }

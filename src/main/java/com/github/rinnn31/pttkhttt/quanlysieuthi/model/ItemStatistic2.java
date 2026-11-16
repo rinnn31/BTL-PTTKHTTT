@@ -20,6 +20,9 @@ public class ItemStatistic2 extends Item2 {
         this.totalImportQuantity = totalImportQuantity;
     }
 
+    public ItemStatistic2() {
+    }
+
     public BigDecimal getTotalRevenue() {
         return totalRevenue;
     }

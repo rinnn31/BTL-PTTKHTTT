@@ -17,6 +17,9 @@ public class OnlineOrder2 extends Order2 {
         this.deliveryFee = deliveryFee;
     }
 
+    public OnlineOrder2() {
+    }
+
     public String getDeliveryAddress() {
         return deliveryAddress;
     }
