@@ -166,11 +166,13 @@
         }
 
         .product-img {
-            width: 45px;
-            height: 45px;
+            width: 160px;
+            height: 160px;
             object-fit: cover;
-            border-radius: 4px;
-            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            display: block;
+            background-color: #fff;
         }
 
         .btn-edit {

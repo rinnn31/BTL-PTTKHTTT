@@ -147,7 +147,7 @@
 
     <div class="container">
         <div class="welcome-card">
-            <h2 style="margin-bottom: 50px;">Trang chủ Quản lý Kho</h2>
+            <h2 style="margin-bottom: 50px;">Trang chủ nhân viên Kho</h2>
 
             <a href="${pageContext.request.contextPath}/items/manage" class="btn-primary">Quản lý mặt hàng</a>
         </div>
