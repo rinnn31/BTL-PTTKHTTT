@@ -11,9 +11,9 @@ public class Staff2 extends User2 {
     BigDecimal salary;
     String role;
 
-    public Staff2(Integer id, String fullName, String password, String phoneNumber, String email, String address,
+    public Staff2(Integer id, String username, String fullName, String password, String phoneNumber, String email, String address,
             String type, BigDecimal salary, String role) {
-        super(id, fullName, password, phoneNumber, email, address, type);
+        super(id, username, fullName, password, phoneNumber, email, address, type);
         this.salary = salary;
         this.role = role;
     }

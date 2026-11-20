@@ -5,6 +5,7 @@ public class User2 {
     public static String TYPE_STAFF = "staff";
 
     Integer id;
+    String username;
     String fullName;
     String password;
     String phoneNumber;
@@ -12,8 +13,9 @@ public class User2 {
     String address;
     String type;
 
-    public User2(Integer id, String fullName, String password, String phoneNumber, String email, String address, String type) {
+    public User2(Integer id, String username, String fullName, String password, String phoneNumber, String email, String address, String type) {
         this.id = id;
+        this.username = username;
         this.fullName = fullName;
         this.password = password;
         this.phoneNumber = phoneNumber;
@@ -79,5 +81,13 @@ public class User2 {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
