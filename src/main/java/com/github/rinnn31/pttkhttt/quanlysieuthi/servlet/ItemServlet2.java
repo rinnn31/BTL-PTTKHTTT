@@ -98,6 +98,7 @@ public class ItemServlet2 extends HttpServlet {
             Part filePart = request.getPart("imageFile");
             
             if (filePart != null && filePart.getSize() > 0) {
+                // Lấy tên file gốc và tạo tên file mới để tránh trùng lặp
                 String submittedFileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
                 if (!submittedFileName.isEmpty()) {
                     String ext = submittedFileName.substring(submittedFileName.lastIndexOf("."));
@@ -165,6 +166,12 @@ public class ItemServlet2 extends HttpServlet {
         }
     }
     
+    /**
+     * Mở trang quản lý danh sách mặt hàng cho nhân viên kho
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     private void openManageItemsPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String keyword = request.getParameter("keyword");
         if (keyword != null && !keyword.trim().isEmpty()) {
@@ -181,6 +188,12 @@ public class ItemServlet2 extends HttpServlet {
         }
     }
 
+    /**
+     * Mở trang chỉnh sửa thông tin mặt hàng
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     private void openEditItemPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String idStr = request.getParameter("id");
         if (idStr == null || idStr.trim().isEmpty()) {
@@ -211,6 +224,12 @@ public class ItemServlet2 extends HttpServlet {
         }
     }
 
+    /**
+     * Mở trang chi tiết mặt hàng cho khách hàng
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     private void openItemDetailsPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String idStr = request.getParameter("id");
         if (idStr == null || idStr.trim().isEmpty()) {
@@ -241,6 +260,12 @@ public class ItemServlet2 extends HttpServlet {
         }
     }
 
+    /**
+     * Mở trang danh sách mặt hàng cho khách hàng, có thể tìm kiếm theo từ khóa
+     * @param request
+     * @param response
+     * @throws IOException
+     */
     private void openItemListPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String keyword = request.getParameter("keyword");
         if (keyword != null && !keyword.trim().isEmpty()) {

@@ -1,6 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="com.github.rinnn31.pttkhttt.quanlysieuthi.model.User2" %>
+<%@ page import="com.github.rinnn31.pttkhttt.quanlysieuthi.model.Staff2" %>
+<%
+    Object u = session.getAttribute("user");
+    boolean allowed = false;
+    if (u instanceof Staff2) {
+        Staff2 s = (Staff2) u;
+        allowed = Staff2.ROLE_WAREHOUSE.equalsIgnoreCase(s.getRole());
+    }
+    if (!allowed) {
+        response.sendRedirect(request.getContextPath() + "/login");
+        return;
+    }
+%>
+
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
