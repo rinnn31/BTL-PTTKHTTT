@@ -14,9 +14,11 @@ public class Item2 {
     Integer stocks;
     BigDecimal price;
     BigDecimal originalPrice;
-    
+    Double weight;
+    Double volumeM3;
+
     public Item2(Integer id, String name, String model, String brand, String category, String description, String specs,
-            String image, Integer stocks, BigDecimal price, BigDecimal originalPrice) {
+            String image, Integer stocks, BigDecimal price, BigDecimal originalPrice, Double weight, Double volumeM3) {
         this.id = id;
         this.name = name;
         this.model = model;
@@ -28,6 +30,8 @@ public class Item2 {
         this.stocks = stocks;
         this.price = price;
         this.originalPrice = originalPrice;
+        this.weight = weight;
+        this.volumeM3 = volumeM3;
     }
 
     public Item2() {
@@ -120,5 +124,21 @@ public class Item2 {
 
     public void setOriginalPrice(BigDecimal originalPrice) {
         this.originalPrice = originalPrice;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public Double getVolumeM3() {
+        return volumeM3;
+    }
+
+    public void setVolumeM3(Double volumeM3) {
+        this.volumeM3 = volumeM3;
     }
 }

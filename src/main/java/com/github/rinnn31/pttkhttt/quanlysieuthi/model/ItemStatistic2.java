@@ -10,9 +10,9 @@ public class ItemStatistic2 extends Item2 {
     Integer totalImportQuantity;
     
     public ItemStatistic2(Integer id, String name, String model, String brand, String category, String description,
-            String specs, String image, Integer stocks, BigDecimal price, BigDecimal originalPrice, BigDecimal totalRevenue,
+            String specs, String image, Integer stocks, BigDecimal price, BigDecimal originalPrice, Double weight, Double volumeM3, BigDecimal totalRevenue,
             Integer totalSoldQuantity, Integer totalOrders, Integer totalImports, Integer totalImportQuantity) {
-        super(id, name, model, brand, category, description, specs, image, stocks, price, originalPrice);
+        super(id, name, model, brand, category, description, specs, image, stocks, price, originalPrice, weight, volumeM3);
         this.totalRevenue = totalRevenue;
         this.totalSoldQuantity = totalSoldQuantity;
         this.totalOrders = totalOrders;

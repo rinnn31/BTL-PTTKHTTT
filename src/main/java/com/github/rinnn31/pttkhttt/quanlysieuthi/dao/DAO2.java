@@ -3,7 +3,7 @@ package com.github.rinnn31.pttkhttt.quanlysieuthi.dao;
 import java.sql.Connection;
 
 public class DAO2 {
-    private static String DB_URL = "jdbc:mysql://localhost:3306/qlst?useSSL=false&serverTimezone=UTC";
+    private static String DB_URL = "jdbc:mysql://localhost:3306/qlst?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static String DB_USER = "root";
     private static String DB_PASSWORD = "root";
 

@@ -41,7 +41,9 @@ public class ItemDAO2 extends DAO2 {
                         rs.getString("image"),
                         rs.getInt("stocks"),
                         rs.getBigDecimal("price"),
-                        rs.getBigDecimal("originalPrice")
+                        rs.getBigDecimal("originalPrice"),
+                        rs.getDouble("weight"),
+                        rs.getDouble("volumeM3")
                     );
                     items.add(item);
                 }
@@ -59,7 +61,7 @@ public class ItemDAO2 extends DAO2 {
      * @return true nếu cập nhật thành công, false nếu thất bại
      */
     public boolean updateItem(Item2 item) {
-        String sql = "UPDATE tblitem2 SET name = ?, model = ?, brand = ?, category = ?, description = ?, specs = ?, image = ?, stocks = ?, price = ?, originalPrice = ? WHERE id = ?";
+        String sql = "UPDATE tblitem2 SET name = ?, model = ?, brand = ?, category = ?, description = ?, specs = ?, image = ?, stocks = ?, price = ?, originalPrice = ?, weight = ?, volumeM3 = ? WHERE id = ?";
 
         Connection conn = getConnection();
 
@@ -75,7 +77,9 @@ public class ItemDAO2 extends DAO2 {
             stmt.setInt(8, item.getStocks());
             stmt.setBigDecimal(9, item.getPrice());
             stmt.setBigDecimal(10, item.getOriginalPrice());
-            stmt.setInt(11, item.getId());
+            stmt.setDouble(11, item.getWeight());
+            stmt.setDouble(12, item.getVolumeM3());
+            stmt.setInt(13, item.getId());
 
             return stmt.executeUpdate() > 0;
 
@@ -113,7 +117,9 @@ public class ItemDAO2 extends DAO2 {
                         rs.getString("image"),
                         rs.getInt("stocks"),
                         rs.getBigDecimal("price"),
-                        rs.getBigDecimal("originalPrice")
+                        rs.getBigDecimal("originalPrice"),
+                        rs.getDouble("weight"),
+                        rs.getDouble("volumeM3")
                     );
                 }
             }
@@ -165,7 +171,9 @@ public class ItemDAO2 extends DAO2 {
                         rs.getString("image"),
                         rs.getInt("stocks"),
                         rs.getBigDecimal("price"),
-                        rs.getBigDecimal("originalPrice")
+                        rs.getBigDecimal("originalPrice"),
+                        rs.getDouble("weight"),
+                        rs.getDouble("volumeM3")
                     );
                     items.add(item);
                 }
