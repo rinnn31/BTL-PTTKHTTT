@@ -194,7 +194,6 @@ public class CartServlet2 extends HttpServlet {
             if (city.isEmpty() || ward.isEmpty() || detailAddress.isEmpty()) {
                 throw new Exception("Địa chỉ giao hàng không được để trống.");
             }
-            System.out.println("Địa chỉ giao hàng: " + detailAddress + ", " + ward + ", " + city);
             if (!"Hà Nội".equalsIgnoreCase(city)) {
                 throw new Exception("Hiện tại chỉ hỗ trợ giao hàng trong khu vực Hà Nội.");
             }
