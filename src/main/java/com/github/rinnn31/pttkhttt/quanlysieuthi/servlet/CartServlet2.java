@@ -17,7 +17,7 @@ import com.github.rinnn31.pttkhttt.quanlysieuthi.model.Customer2;
 import com.github.rinnn31.pttkhttt.quanlysieuthi.model.Item2;
 import com.github.rinnn31.pttkhttt.quanlysieuthi.model.OnlineOrder2;
 import com.github.rinnn31.pttkhttt.quanlysieuthi.model.Order2;
-import com.github.rinnn31.pttkhttt.quanlysieuthi.model.OrderDetail2;
+import com.github.rinnn31.pttkhttt.quanlysieuthi.model.OrderDetails2;
 import com.github.rinnn31.pttkhttt.quanlysieuthi.model.User2;
 
 @WebServlet(name = "CartServlet2", urlPatterns = { "/cart/*" })
@@ -74,7 +74,7 @@ public class CartServlet2 extends HttpServlet {
 
         // Lây phía giao hàng từ session và chuyển sang request để hiển thị trên trang,
         // sau đó xóa khỏi session để tránh hiển thị lại khi người dùng làm mới trang.
-        List<OrderDetail2> cartDetails = (List<OrderDetail2>) session.getAttribute("cartDetails");
+        List<OrderDetails2> cartDetails = (List<OrderDetails2>) session.getAttribute("cartDetails");
         if (cartDetails != null) {
             BigDecimal fee = calculateDeliveryFee(cartDetails);
             request.setAttribute("deliveryFee", fee);
@@ -125,14 +125,14 @@ public class CartServlet2 extends HttpServlet {
                 throw new Exception("Sản phẩm không tồn tại.");
             }
 
-            List<OrderDetail2> cartDetails = (List<OrderDetail2>) session.getAttribute("cartDetails");
+            List<OrderDetails2> cartDetails = (List<OrderDetails2>) session.getAttribute("cartDetails");
             if (cartDetails == null) {
                 cartDetails = new java.util.ArrayList<>();
                 session.setAttribute("cartDetails", cartDetails);
             }
 
             boolean itemExistsInCart = false;
-            for (OrderDetail2 detail : cartDetails) {
+            for (OrderDetails2 detail : cartDetails) {
                 if (detail.getItem().getId().equals(itemId)) {
                     detail.setQuantity(detail.getQuantity() + quantity);
                     // Cập nhật đơn giá trong trường hợp giá sản phẩm thay đổi
@@ -143,7 +143,7 @@ public class CartServlet2 extends HttpServlet {
             }
 
             if (!itemExistsInCart) {
-                OrderDetail2 newDetail = new OrderDetail2(
+                OrderDetails2 newDetail = new OrderDetails2(
                     0,
                     item.getPrice(), 
                     quantity,
@@ -205,7 +205,7 @@ public class CartServlet2 extends HttpServlet {
                 throw new Exception("Số điện thoại liên hệ không được để trống.");
             }
 
-            List<OrderDetail2> orderDetails = (List<OrderDetail2>) request.getSession().getAttribute("cartDetails");
+            List<OrderDetails2> orderDetails = (List<OrderDetails2>) request.getSession().getAttribute("cartDetails");
             if (orderDetails == null || orderDetails.isEmpty()) {
                 throw new Exception("Giỏ hàng của bạn đang trống.");
             }
@@ -262,7 +262,7 @@ public class CartServlet2 extends HttpServlet {
             return;
         }
 
-        List<OrderDetail2> cartDetails = (List<OrderDetail2>) request.getSession().getAttribute("cartDetails");
+        List<OrderDetails2> cartDetails = (List<OrderDetails2>) request.getSession().getAttribute("cartDetails");
         if (cartDetails != null) {
             cartDetails.removeIf(detail -> detail.getItem().getId().equals(itemId));
         }
@@ -270,14 +270,14 @@ public class CartServlet2 extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/cart/view");
     }
 
-    private BigDecimal calculateDeliveryFee(List<OrderDetail2> cart) {
+    private BigDecimal calculateDeliveryFee(List<OrderDetails2> cart) {
         // Kiểm tra nếu ít hàng và tổng trọng lượng nhỏ hơn 5kg, phí giao hàng là 30000
         // (giao hàng bằng xe máy)
         boolean useMotorbike = true;
         // Kiểm tra số lượng mặt hàng và tổng trọng lượng
         int totalQuantity = 0;
         double totalWeight = 0.0, totalVolume = 0.0;
-        for (OrderDetail2 detail : cart) {
+        for (OrderDetails2 detail : cart) {
             totalQuantity += detail.getQuantity();
             totalWeight += detail.getItem().getWeight() * detail.getQuantity();
             totalVolume += detail.getItem().getVolumeM3() * detail.getQuantity();

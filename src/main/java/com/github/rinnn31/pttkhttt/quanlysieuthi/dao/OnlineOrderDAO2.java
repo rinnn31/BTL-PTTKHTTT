@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import com.github.rinnn31.pttkhttt.quanlysieuthi.model.OnlineOrder2;
-import com.github.rinnn31.pttkhttt.quanlysieuthi.model.OrderDetail2;
+import com.github.rinnn31.pttkhttt.quanlysieuthi.model.OrderDetails2;
 
 public class OnlineOrderDAO2 extends DAO2 {
 
@@ -49,7 +49,7 @@ public class OnlineOrderDAO2 extends DAO2 {
                         stmt2.setString(4, order.getContactPhone());
                         if (stmt2.executeUpdate() > 0) {
                             // Thêm chi tiết đơn hàng
-                            for (OrderDetail2 detail : order.getDetails()) {
+                            for (OrderDetails2 detail : order.getDetails()) {
                                 stmt3.setInt(1, orderId);
                                 stmt3.setInt(2, detail.getItem().getId());
                                 stmt3.setInt(3, detail.getQuantity());

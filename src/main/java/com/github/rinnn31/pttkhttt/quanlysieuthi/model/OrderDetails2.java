@@ -2,20 +2,20 @@ package com.github.rinnn31.pttkhttt.quanlysieuthi.model;
 
 import java.math.BigDecimal;
 
-public class OrderDetail2 {
+public class OrderDetails2 {
     Integer id;
     BigDecimal unitPrice;
     Integer quantity;
     Item2 item;
 
-    public OrderDetail2(Integer id, BigDecimal unitPrice, Integer quantity, Item2 item) {
+    public OrderDetails2(Integer id, BigDecimal unitPrice, Integer quantity, Item2 item) {
         this.id = id;
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.item = item;
     }
 
-    public OrderDetail2() {
+    public OrderDetails2() {
     }
 
     public Integer getId() {

@@ -18,10 +18,10 @@ public class Order2 {
     String status;
     String type;
     Customer2 customer;
-    List<OrderDetail2> details;
+    List<OrderDetails2> details;
     
     public Order2(Integer id, Instant createdAt, String status, BigDecimal total, String type, Customer2 customer,
-            List<OrderDetail2> details) {
+            List<OrderDetails2> details) {
         this.id = id;
         this.createdAt = createdAt;
         this.status = status;
@@ -73,11 +73,11 @@ public class Order2 {
         this.customer = customer;
     }
 
-    public List<OrderDetail2> getDetails() {
+    public List<OrderDetails2> getDetails() {
         return details;
     }
 
-    public void setDetails(List<OrderDetail2> details) {
+    public void setDetails(List<OrderDetails2> details) {
         this.details = details;
     }
 

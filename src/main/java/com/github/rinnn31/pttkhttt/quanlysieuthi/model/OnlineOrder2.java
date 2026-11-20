@@ -10,7 +10,7 @@ public class OnlineOrder2 extends Order2 {
     BigDecimal deliveryFee;
     
     public OnlineOrder2(Integer id, Instant createdAt, String status, BigDecimal total, String type, Customer2 customer,
-            List<OrderDetail2> details, String deliveryAddress, String contactPhone, BigDecimal deliveryFee) {
+            List<OrderDetails2> details, String deliveryAddress, String contactPhone, BigDecimal deliveryFee) {
         super(id, createdAt, status, total, type, customer, details);
         this.deliveryAddress = deliveryAddress;
         this.contactPhone = contactPhone;
