@@ -23,7 +23,7 @@ public class AuthServlet2 extends HttpServlet {
         switch (path) {
             case "/login":
                 request.getSession().invalidate();
-                request.getRequestDispatcher("view/user/loginFrm2.jsp").forward(request, response);    
+                request.getRequestDispatcher("/user/loginFrm2.jsp").forward(request, response);    
                 break;
             case "/home":
                 HttpSession session = request.getSession(false);
@@ -34,11 +34,11 @@ public class AuthServlet2 extends HttpServlet {
 
                 User2 user = (User2) session.getAttribute("user");
                 if (User2.TYPE_CUSTOMER.equals(user.getType())) {
-                    request.getRequestDispatcher("/view/customer/customerHomeFrm2.jsp").forward(request, response);
+                    request.getRequestDispatcher("/customer/customerHomeFrm2.jsp").forward(request, response);
                 } else {
                     Staff2 staff = (Staff2) user;
                     if (Staff2.ROLE_WAREHOUSE.equals(staff.getRole())) {
-                        request.getRequestDispatcher("/view/warehouse/warehouseHomeFrm2.jsp").forward(request, response);
+                        request.getRequestDispatcher("/warehouse/warehouseHomeFrm2.jsp").forward(request, response);
                     } else {
                         response.sendError(HttpServletResponse.SC_FORBIDDEN, "Bạn không có quyền truy cập trang này.");
                     }
@@ -59,7 +59,7 @@ public class AuthServlet2 extends HttpServlet {
                 String password = request.getParameter("password");
                 if (username == null || password == null || username.trim().isEmpty() || password.trim().isEmpty()) {
                     request.setAttribute("errorMessage", "Vui lòng nhập đầy đủ thông tin đăng nhập.");
-                    request.getRequestDispatcher("/view/user/loginFrm2.jsp").forward(request, response);
+                    request.getRequestDispatcher("/user/loginFrm2.jsp").forward(request, response);
                     return;
                 }
 
@@ -67,7 +67,7 @@ public class AuthServlet2 extends HttpServlet {
                 User2 user = userDAO.getUserByUsername(username);
                 if (user == null || !user.getPassword().equals(password)) {
                     request.setAttribute("errorMessage", "Tên đăng nhập hoặc mật khẩu không đúng.");
-                    request.getRequestDispatcher("/view/user/loginFrm2.jsp").forward(request, response);
+                    request.getRequestDispatcher("/user/loginFrm2.jsp").forward(request, response);
                     return;
                 }
 

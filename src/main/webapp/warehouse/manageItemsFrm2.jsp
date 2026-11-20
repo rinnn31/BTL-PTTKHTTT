@@ -220,7 +220,7 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 60px;">STT</th>
-                            <th style="width: 80px;">Hình ảnh</th>
+                            <th style="width:200px;">Hình ảnh</th>
                             <th>Mã mặt hàng</th>
                             <th>Tên mặt hàng</th>
                             <th>Đơn giá bán (VNĐ)</th>

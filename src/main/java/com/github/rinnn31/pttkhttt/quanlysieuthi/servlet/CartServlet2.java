@@ -92,7 +92,7 @@ public class CartServlet2 extends HttpServlet {
             session.removeAttribute("errorMessage");
         }
 
-        request.getRequestDispatcher("/view/customer/cartInfoFrm2.jsp").forward(request, response);
+        request.getRequestDispatcher("/customer/cartInfoFrm2.jsp").forward(request, response);
     }
 
     /**

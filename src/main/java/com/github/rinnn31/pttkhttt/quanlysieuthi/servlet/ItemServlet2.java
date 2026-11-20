@@ -151,7 +151,7 @@ public class ItemServlet2 extends HttpServlet {
             if (itemDAO.updateItem(item)) {
                 request.setAttribute("item", item);
                 request.setAttribute("successMessage", "Cập nhật sản phẩm thành công!");
-                request.getRequestDispatcher("/view/warehouse/editItemFrm2.jsp").forward(request, response);
+                request.getRequestDispatcher("/warehouse/editItemFrm2.jsp").forward(request, response);
             } else {
                 throw new Exception("Cập nhật sản phẩm thất bại. Vui lòng thử lại.");
             }
@@ -182,7 +182,7 @@ public class ItemServlet2 extends HttpServlet {
         }
         
         try {
-            request.getRequestDispatcher("/view/warehouse/manageItemsFrm2.jsp").forward(request, response);
+            request.getRequestDispatcher("/warehouse/manageItemsFrm2.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -218,7 +218,7 @@ public class ItemServlet2 extends HttpServlet {
 
         request.setAttribute("item", item);
         try {
-            request.getRequestDispatcher("/view/warehouse/editItemFrm2.jsp").forward(request, response);
+            request.getRequestDispatcher("/warehouse/editItemFrm2.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -254,7 +254,7 @@ public class ItemServlet2 extends HttpServlet {
 
         request.setAttribute("item", item);
         try {
-            request.getRequestDispatcher("/view/customer/itemDetailsFrm2.jsp").forward(request, response);
+            request.getRequestDispatcher("/customer/itemDetailsFrm2.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -276,7 +276,7 @@ public class ItemServlet2 extends HttpServlet {
         }
 
         try {
-            request.getRequestDispatcher("/view/customer/listItemsFrm2.jsp").forward(request, response);
+            request.getRequestDispatcher("/customer/listItemsFrm2.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

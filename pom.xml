@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.rinnn31</groupId>
-    <artifactId>PTTKHTTT-QuanLySieuThi</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>QLST</artifactId>
+    <version>1.0</version>
     <packaging>war</packaging>
-    <name>PTTKHTTT-QuanLySieuThi-1.0-SNAPSHOT</name>
+    <name>QLST</name>
     
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
