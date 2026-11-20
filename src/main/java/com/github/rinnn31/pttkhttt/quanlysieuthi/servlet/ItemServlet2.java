@@ -44,6 +44,9 @@ public class ItemServlet2 extends HttpServlet {
             case "/details":
                 openItemDetailsPage(request, response);
                 break;
+            case "/list":
+                openItemListPage(request, response);
+                break;
             default:
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Trang không tồn tại: "+   path);
         }
@@ -59,8 +62,6 @@ public class ItemServlet2 extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         Integer id = null;
-
-        System.out.println("Processing POST request for path: " + path);
 
         try {
             String idStr = request.getParameter("id");
@@ -132,13 +133,26 @@ public class ItemServlet2 extends HttpServlet {
                 throw new Exception("Định dạng giá sản phẩm hoặc giá gốc không hợp lệ.");
             }
 
-            Item2 item = new Item2(id, name, model, brand, category, description, specs, image, stocks, price, originalPrice);
+            Double weight, volumeM3;
+            try {
+                weight = Double.parseDouble(request.getParameter("weight"));
+                volumeM3 = Double.parseDouble(request.getParameter("volumeM3"));
+                if (weight < 0 || volumeM3 < 0) {
+                    throw new Exception("Trọng lượng và thể tích không được âm.");
+                }
+            } catch (NumberFormatException e) {
+                throw new Exception("Định dạng trọng lượng hoặc thể tích không hợp lệ.");
+            }
+
+            Item2 item = new Item2(id, name, model, brand, category, description, specs, image, stocks, price, originalPrice, weight, volumeM3);
 
             ItemDAO2 itemDAO = new ItemDAO2();
             if (itemDAO.updateItem(item)) {
-                response.sendRedirect(request.getContextPath() + "/items/edit?id=" + id + "&success=true");
+                request.setAttribute("item", item);
+                request.setAttribute("successMessage", "Cập nhật sản phẩm thành công!");
+                request.getRequestDispatcher("/view/warehouse/editItemFrm2.jsp").forward(request, response);
             } else {
-                response.sendRedirect(request.getContextPath() + "/items/edit?id=" + id + "&success=false");   
+                throw new Exception("Cập nhật sản phẩm thất bại. Vui lòng thử lại.");
             }
 
         } catch (Exception e) {
@@ -161,7 +175,7 @@ public class ItemServlet2 extends HttpServlet {
         }
         
         try {
-            request.getRequestDispatcher("/manageItemsFrm2.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/warehouse/manageItemsFrm2.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -191,7 +205,7 @@ public class ItemServlet2 extends HttpServlet {
 
         request.setAttribute("item", item);
         try {
-            request.getRequestDispatcher("/editItemFrm2.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/warehouse/editItemFrm2.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -221,7 +235,23 @@ public class ItemServlet2 extends HttpServlet {
 
         request.setAttribute("item", item);
         try {
-            request.getRequestDispatcher("/itemDetailsFrm2.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/customer/itemDetailsFrm2.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openItemListPage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String keyword = request.getParameter("keyword");
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            ItemDAO2 itemDAO = new ItemDAO2();
+            List<Item2> items = itemDAO.getItemsContainKeyword(keyword);
+
+            request.setAttribute("items", items);
+        }
+
+        try {
+            request.getRequestDispatcher("/view/customer/listItemsFrm2.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }

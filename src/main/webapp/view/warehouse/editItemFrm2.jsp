@@ -38,13 +38,6 @@
             color: #ffffff;
         }
 
-        .navbar-user {
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
         .container {
             max-width: 800px;
             margin: 30px auto;
@@ -86,6 +79,18 @@
             background-color: #fee2e2;
             color: #b91c1c;
             border: 1px solid #fecaca;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
 
         .form-group {
@@ -147,11 +152,6 @@
         .preview-img-large:hover {
             border-color: #2563eb;
             opacity: 0.9;
-        }
-
-        .image-hint {
-            font-size: 12px;
-            color: #64748b;
         }
 
         input[type="file"] {
@@ -246,7 +246,7 @@
             transition: background-color 0.2s;
         }
 
-        .btn-cancel:hover {
+        .btn-back:hover {
             background-color: #475569;
         }
     </style>
@@ -264,13 +264,19 @@
                 <h2>Chỉnh sửa thông tin mặt hàng</h2>
             </div>
 
+            <c:if test="${not empty successMessage}">
+                <div class="alert alert-success">${successMessage}</div>
+            </c:if>
+            <c:if test="${not empty errorMessage}">
+                <div class="alert alert-danger">${errorMessage}</div>
+            </c:if>
             <c:if test="${not empty param.success}">
                 <div class="alert ${param.success == 'true' ? 'alert-success' : 'alert-danger'}">
                     ${param.success == 'true' ? 'Lưu mặt hàng thành công!' : 'Đã có lỗi xảy ra, vui lòng thử lại!'}
                 </div>
             </c:if>
 
-            <form action="${pageContext.request.contextPath}/items/edit" method="post" enctype="multipart/form-data" onsubmit="prepareSpecsJson()">
+            <form action="${pageContext.request.contextPath}/items/edit?id=${item.id}" method="post" enctype="multipart/form-data" onsubmit="prepareSpecsJson()">
                 <input type="hidden" name="id" value="${item.id}">
                 <input type="hidden" name="image" value="${item.image}">
                 <input type="hidden" name="specs" id="specsJsonInput" value="">
@@ -286,7 +292,7 @@
                                 <img id="imagePreview" src="${pageContext.request.contextPath}/images/default-product.png" alt="No image" class="preview-img-large" onclick="triggerFileInput()" title="Nhấn để chọn ảnh mới">
                             </c:otherwise>
                         </c:choose>
-                        <input type="file" id="imageFile" name="imageFile" accept="image/*" onchange="previewSelectedImage(this)"> 
+                        <input type="file" id="imageFile" name="imageFile" accept="image/*" onchange="previewSelectedImage(this)">
                     </div>
                 </div>
 
@@ -295,34 +301,52 @@
                     <input type="text" id="name" name="name" value="${item.name}" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="model">Mã mẫu</label>
-                    <input type="text" id="model" name="model" value="${item.model}" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="model">Mã mặt hàng</label>
+                        <input type="text" id="model" name="model" value="${item.model}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="brand">Thương hiệu</label>
+                        <input type="text" id="brand" name="brand" value="${item.brand}" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="brand">Thương hiệu</label>
-                    <input type="text" id="brand" name="brand" value="${item.brand}" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="category">Danh mục</label>
+                        <input type="text" id="category" name="category" value="${item.category}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stocks">Tồn kho</label>
+                        <input type="number" id="stocks" name="stocks" min="0" value="${item.stocks}" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="category">Danh mục</label>
-                    <input type="text" id="category" name="category" value="${item.category}" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="price">Đơn giá bán (VNĐ)</label>
+                        <input type="number" step="any" min="0" id="price" name="price" value="${item.price}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="originalPrice">Đơn giá gốc (VNĐ)</label>
+                        <input type="number" step="any" min="0" id="originalPrice" name="originalPrice" value="${item.originalPrice}" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="price">Đơn giá bán (VNĐ)</label>
-                    <input type="number" step="0.001" id="price" name="price" value="${item.price}" required>
-                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="weight">Trọng lượng (kg)</label>
+                        <input type="number" step="any" min="0" id="weight" name="weight" value="${item.weight}" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="originalPrice">Giá gốc (VNĐ)</label>
-                    <input type="number" step="1" id="originalPrice" name="originalPrice" value="${item.originalPrice}" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="stocks">Tồn kho</label>
-                    <input type="number" id="stocks" name="stocks" value="${item.stocks}" required>
+                    <div class="form-group">
+                        <label for="volumeM3">Thể tích (m3)</label>
+                        <input type="number" step="any" min="0" id="volumeM3" name="volumeM3" value="${item.volumeM3}" required>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -375,7 +399,7 @@
         function loadSpecs() {
             const tbody = document.getElementById('specsTableBody');
             tbody.innerHTML = '';
-            
+
             try {
                 if (initialSpecsJson && initialSpecsJson.trim() !== '') {
                     const specsObj = JSON.parse(initialSpecsJson);
@@ -395,7 +419,7 @@
         function addSpecRow(key, value) {
             const tbody = document.getElementById('specsTableBody');
             const row = document.createElement('tr');
-            
+
             const tdKey = document.createElement('td');
             const inputKey = document.createElement('input');
             inputKey.type = 'text';

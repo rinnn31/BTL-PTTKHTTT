@@ -207,7 +207,7 @@
                             <th style="width: 80px;">Hình ảnh</th>
                             <th>Mã mặt hàng</th>
                             <th>Tên mặt hàng</th>
-                            <th>Đơn giá (VNĐ)</th>
+                            <th>Đơn giá bán (VNĐ)</th>
                             <th class="text-center">Tồn kho</th>
                             <th class="text-center" style="width: 100px;">Hành động</th>
                         </tr>

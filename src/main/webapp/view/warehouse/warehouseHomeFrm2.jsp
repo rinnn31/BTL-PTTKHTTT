@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -43,13 +44,19 @@
             gap: 16px;
         }
 
+        .logout-form {
+            display: inline;
+        }
+
         .logout-btn {
             background-color: rgba(255, 255, 255, 0.15);
             color: #ffffff;
             padding: 6px 14px;
+            border: none;
             border-radius: 4px;
-            text-decoration: none;
             font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
             transition: background-color 0.2s;
         }
 
@@ -109,15 +116,23 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="warehouseHomeFrm2.jsp" class="navbar-brand">
+        <a href="${pageContext.request.contextPath}/home" class="navbar-brand">
             Hệ thống siêu thị điện máy
         </a>
+        <div class="navbar-user">
+            <c:if test="${not empty sessionScope.user}">
+                <span>Xin chào, <strong>${sessionScope.user.fullName}</strong></span>
+            </c:if>
+            <form action="${pageContext.request.contextPath}/logout" method="post" class="logout-form">
+                <button type="submit" class="logout-btn">Đăng xuất</button>
+            </form>
+        </div>
     </nav>
 
     <div class="container">
         <div class="welcome-card">
             <h2 style="margin-bottom: 50px;">Trang chủ Quản lý Kho</h2>
-            
+
             <a href="${pageContext.request.contextPath}/items/manage" class="btn-primary">Quản lý mặt hàng</a>
         </div>
     </div>
