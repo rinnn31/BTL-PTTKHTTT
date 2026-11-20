@@ -20,7 +20,7 @@ public class OnlineOrderDAO2 extends DAO2 {
         PreparedStatement stmt2 = null;
         PreparedStatement stmt3 = null;
 
-        String sql1 = "INSERT INTO tblorder2 (customerId, createdAt, total, status, type) VALUES (?, ?, ?, ?, ?)";
+        String sql1 = "INSERT INTO tblorder2 (customerId, createdAt, status, type) VALUES (?, ?, ?, ?)";
         String sql2 = "INSERT INTO tblonlineorder2 (orderId, deliveryAddress, deliveryFee, contactPhone) VALUES (?, ?, ?, ?)";
         String sql3 = "INSERT INTO tblorderdetails2 (orderId, itemId, quantity, unitPrice) VALUES (?, ?, ?, ?)";
 
@@ -35,8 +35,8 @@ public class OnlineOrderDAO2 extends DAO2 {
 
             stmt.setInt(1, order.getCustomer().getId());
             stmt.setTimestamp(2, java.sql.Timestamp.from(order.getCreatedAt()));
-            stmt.setString(4, order.getStatus());
-            stmt.setString(5, order.getType());
+            stmt.setString(3, order.getStatus());
+            stmt.setString(4, order.getType());
 
             if (stmt.executeUpdate() > 0) {
                 try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
